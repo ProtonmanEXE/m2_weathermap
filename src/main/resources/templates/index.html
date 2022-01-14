@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-image: url('/background.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+    </style>
+    <link rel="stylesheet" href="/bootstrap.min.css">
+    <title>Weather Map</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col d-flex justify-content-center">
+                <h1 style="font-size: 2em"><b>Welcome to Ian's Weather Map</b></h1>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col d-flex justify-content-center">
+                <form method="GET" action="/weather">
+                    <label class="form-label"><b>Please enter the country/city:</b></label>
+
+                    <div class="input-group">
+                        <input type="text" name="location" id="location" required size="80"
+                            placeholder="Please enter a country/city" class="form-control">
+
+                        <button type="submit" class="btn btn-warning"
+                            style="background-color: black">
+                            <span style="color:white"><b>Go!</b></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+    </div>
+</body>

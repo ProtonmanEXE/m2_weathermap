@@ -58,14 +58,6 @@
 		</dependency>
 		<!-- end of addition -->
 
-		<!-- added this part for open weather mapping -->
-		<dependency>
-  			<groupId>net.aksingh</groupId>
-  			<artifactId>owm-japis</artifactId>
-  			<version>2.5.3.0</version>
-		</dependency>
-		<!-- added this part for open weather mapping -->
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

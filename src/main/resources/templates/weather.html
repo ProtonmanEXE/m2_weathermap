@@ -10,21 +10,69 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
+            display: flex;
+            align-items: center;
         }
     </style>
     <link rel="stylesheet" href="/bootstrap.min.css">
     <title>Weather</title>
 </head>
 
-<body>
+<body th:object="${weatherobj}">
+
     <div class="container">
-        <div class="row mt-5">
-            <div class="col d-flex justify-content-center">
-                <h1><b>This is <span th:text="${location}"></span>'s weather</b></h1>
+        
+        <p class="row mt-4">
+            <div class="col d-flex align-items-center justify-content-center">
+                <h1><b><span th:text="*{thisLocation}"></span>'s Weather</b></h1>
+                <img th:src="@{*{iconUrl}}" alt="icon">
+            </div>
+        </p>        
+                
+        <p class="row mt-5">
+            <div class="d-flex align-items-center justify-content-center">
+                <table style="background-color:whitesmoke; width:570px; font-size: 150%">
+                    <tr>
+                        <td colspan="2" style="text-align: center;" >
+                            <b>Location: 
+                            <span th:text="*{thisLocation}"></span></b></td>
+                    </tr>
+                    <tr>
+                        <td><b>Description: </b><span th:text="*{main}"></span>,
+                            <i><span th:text="*{description}"></span></i></td>
+                    </tr>
+                    <tr>
+                        <td><b>Temperature: </b><span th:text="*{temp}"></span> 
+                            <sup>o</sup>C</td>
+                        <td><b>Humidity: </b><span th:text="*{humidity}"></span>%</td>                               
+                    </tr>
+                </table>              
+            </div>
+        </p>
+
+        <div class="row mt-3 mb-3">
+            <div class="col d-flex align-items-center justify-content-center">
+                <b><i><span style="color:olivedrab" th:text="${msg}"></span></i></b>  
             </div>
         </div>
 
+        <form method="POST" action="/">
+            <div style="margin-right: 24.5%">
+                <div class="col d-flex flex-row-reverse">
+                    <button type="submit" class="btn btn-primary" style="background-color: 
+                        black">
+                        <span style="color:white"><b>Search for another location</b></span>      
+                </div>
+            </div>
+        </form>
 
-
+        <div style="margin-left: -5%; position: fixed; bottom: 7%;">
+            <div class="col d-flex flex-row">
+                Current weather data is powered by&nbsp
+                <a href="https://openweathermap.org/current">Weather API from OpenWeather</a>
+            </div>
+        </div>
+        
     </div>
+    
 </body>

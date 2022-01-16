@@ -1,9 +1,15 @@
 package protonmanexe.weathermap.model;
 
+import java.io.Serializable;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
 
-public class Weather {
+public class Weather implements Serializable { 
+// important to implement Serializable if want to pass to redis to
+// serialise
 
     private final String appKey;
     private String thisLocation;
@@ -12,10 +18,12 @@ public class Weather {
     private double temp;
     private int humidity;
     private String icon;
+    private String iconUrl;
+    private String timeNow;
 
     // constructor
     public Weather () {
-        String key = System.getenv("W_API_KEY");
+        String key = System.getenv("W_API_KEY"); // get API key
         if ((null != key) && (key.trim().length() > 0))
             appKey = key;
         else
@@ -75,6 +83,14 @@ public class Weather {
         this.icon = icon;
     }
 
+    public String getIconUrl() {
+        return iconUrl;
+    }
+
+    public void setIconUrl(String iconUrl) {
+        this.iconUrl = iconUrl;
+    }
+
     public static Weather create (JsonObject o) {
         final Weather w = new Weather();
         w.setMain(o.getString("main"));
@@ -93,6 +109,15 @@ public class Weather {
             .build();
     }
 
+    public String getTimeNow() {
+        return timeNow;
+    }
 
+    public void setTimeNow() {
+        ZonedDateTime now = ZonedDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm z");
+        String timeNow = now.format(formatter);
+        this.timeNow = timeNow;
+    }
     
 }
